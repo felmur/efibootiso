@@ -46,15 +46,17 @@ Copy grub modules:
 Create stub grub configuration:
 
     cat << EOF > grub-stub.cfg
+
+    # commented insmod lines, see "donno" post in the issues section on the original
+    # github repository
     
-    insmod all_video
-    insmod efi_gop
-    insmod efi_uga
-    insmod video_bochs
-    insmod video_cirrus
-    
-    insmod iso9660
-    insmod udf
+    #insmod all_video
+    #insmod efi_gop
+    #insmod efi_uga
+    #insmod video_bochs
+    #insmod video_cirrus
+    #insmod iso9660
+    #insmod udf
     
     search --no-floppy --label EFIBOOTISO --set root
     set prefix=($root)/boot/grub
@@ -70,18 +72,20 @@ Create grub image:
        -c grub-stub.cfg \
        -p /boot/grub \
        -O x86_64-efi \
-       efi_gop efi_uga efinet \
-       all_video video video_bochs video_cirrus video_fb videoinfo \
-       serial \
-       terminfo terminal \
-       search search_fs_file search_fs_uuid search_label \
-       udf iso9660 ext2 fat exfat ntfs hfsplus \
-       part_gpt part_msdos msdospart lvm diskfilter parttool probe \
-       normal \
-       acpi ohci uhci ahci ehci \
-       cat ls chain configfile echo halt reboot \
-       ls lsefimmap lsefisystab lsmmap lspci lsacpi lssal \
-       linux
+       # commented module lines, see "donno" post in the issues section on the original
+       # github repository
+       #efi_gop efi_uga efinet \
+       #all_video video video_bochs video_cirrus video_fb videoinfo \
+       #serial \
+       #terminfo terminal \
+       #search search_fs_file search_fs_uuid search_label \
+       #udf iso9660 ext2 fat exfat ntfs hfsplus \
+       #part_gpt part_msdos msdospart lvm diskfilter parttool probe \
+       #normal \
+       #acpi ohci uhci ahci ehci \
+       #cat ls chain configfile echo halt reboot \
+       #ls lsefimmap lsefisystab lsmmap lspci lsacpi lssal \
+       #linux
 
 
 Create UEFI ESP (EFI System Partition) Image
