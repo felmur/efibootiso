@@ -47,9 +47,11 @@ Create stub grub configuration:
 
     cat << EOF > grub-stub.cfg
 
-    # commented insmod lines, see "donno" post in the issues section on the original
-    # github repository
-    
+       #################################################################
+       # the following insmod lines was disabled.
+       # See "donno" post in the issues section on the original
+       # github repository https://github.com/syzdek/efibootiso
+       #################################################################
     #insmod all_video
     #insmod efi_gop
     #insmod efi_uga
@@ -72,8 +74,15 @@ Create grub image:
        -c grub-stub.cfg \
        -p /boot/grub \
        -O x86_64-efi \
-       # commented module lines, see "donno" post in the issues section on the original
-       # github repository
+       all_video disk part_gpt part_msdos linux normal configfile \
+       search search_label efi_gop fat iso9660 cat echo ls test \
+       true help gzio multiboot2 efi_uga reboot halt lspci
+       
+       #################################################################
+       # the following module lines was disabled.
+       # See "donno" post in the issues section on the original
+       # github repository https://github.com/syzdek/efibootiso
+       #################################################################
        #efi_gop efi_uga efinet \
        #all_video video video_bochs video_cirrus video_fb videoinfo \
        #serial \
